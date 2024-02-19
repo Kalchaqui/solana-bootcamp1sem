@@ -11,7 +11,7 @@ loadComponent: () =>
 {
     path: 'settings',
     loadComponent: () =>
-        import('./settings-page.component').then((m) => m.settingsPageComponent),
+        import('./Setting-section.component').then((m) => m.settingsPageComponent),
     
     },
 

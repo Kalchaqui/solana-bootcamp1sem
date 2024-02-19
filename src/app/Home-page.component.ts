@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeroSectionComponent} from './hero-section.component';
 import {featuresSectionComponent } from './feature-section.component';
-import { settingsSectionComponent } from './Setting-section.component';
+import { settingsPageComponent } from './Setting-section.component';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { settingsSectionComponent } from './Setting-section.component';
     `,
     
     
-    imports: [HeroSectionComponent, featuresSectionComponent, settingsSectionComponent],
+    imports: [HeroSectionComponent, featuresSectionComponent, settingsPageComponent],
     standalone: true,
 })
 export class HomePageComponent {}

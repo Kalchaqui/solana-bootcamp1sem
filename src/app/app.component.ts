@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import {HdWalletMultiButtonComponent} from '@heavy-duty/wallet-adapter-material'
-import { ShyftApiService } from './shypt-appi';
+import { ShyftApiService } from './shyft-appi';
 import { WalletStore } from '@heavy-duty/wallet-adapter';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {computedAsync} from 'ngxtension/computed-async';
@@ -45,6 +45,6 @@ export class AppComponent {
 
   readonly account = computedAsync(
     () => this._shyftApiService.getAccount(this._publicKey()?.toBase58()), 
-  {requireSync: true},
+  {requireSync: false},
   );
 }

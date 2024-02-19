@@ -10,4 +10,4 @@ import { Component } from "@angular/core";
 `,
     standalone: true,
 })
-export class settingsSectionComponent {}
+export class settingsPageComponent {}

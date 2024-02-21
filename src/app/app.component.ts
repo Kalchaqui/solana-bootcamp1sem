@@ -20,7 +20,7 @@ import { MatAnchor } from '@angular/material/button';
   selector: 'solana-bootcamp1sem-root',
   template: `
   <header class="px-16 pt-20 pb-8 relative">
-  <h1 class="text-center text-5xl mb-4"> Hola Soy Bob, no me gusta el tío Sam, pero ponga su wallet y sientase cómodo </h1>
+  <h1 class="text-center text-5xl mb-4"> Hola Soy Bob, ingresr su wallet y sientase cómodo </h1>
 
   @if (account()) {
     <div class="absolute top-4 left-4 flex items-center gap-2">

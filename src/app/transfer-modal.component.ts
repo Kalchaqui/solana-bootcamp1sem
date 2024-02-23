@@ -7,9 +7,11 @@ import { Component, OnInit, TemplateRef } from "@angular/core";
                 <h2> Tramsferir Fondos 
 
                 </h2>
+                <bob-transfer-form></bob-transfer-form>
             </div>
                     `, 
         standalone: true,
+        imports: [TransferFormComponent]
                 })
 
 export class TransferModalComponent {};

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-    selector: 'wallet-features-section',
+    selector: 'bob-features-section',
     template: `
     <section class="px-16 py-24">
         <ul class="flex justify-center gap-16">

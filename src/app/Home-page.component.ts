@@ -5,10 +5,10 @@ import { settingsPageComponent } from './Setting-section.component';
 
 
 @Component({
-    selector: 'Wallet-home-page',
+    selector: 'bob-home-page',
     template: `
-        <Wallet-hero-section></Wallet-hero-section> 
-        <wallet-features-section></wallet-features-section>
+        <bob-hero-section></bob-hero-section> 
+        <bob-features-section></bob-features-section>
     `,
     
     

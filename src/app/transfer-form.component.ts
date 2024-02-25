@@ -1,8 +1,9 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NgForm } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIcon} from '@angular/material/icon'
 import { MatInput} from '@angular/material/input'
+import { EventEmitter } from "stream";
 
 export interface TransferFormModel {
     memo: string | null;
@@ -19,8 +20,8 @@ export interface TrasferFormPayload{
     @Component ({
         selector: 'bob-transfer-form',
         template:  `
-        <form #form="ngForm">
-            <mat-form-field appearance="fill">
+        <form #form="ngForm" class="W-[400px]" (ngSubmit)="onSuBmintForm(form)")>
+            <mat-form-field appearance="fill" class="w-full mb-4">
             <mat-label>Concepto</mat-label>
             <input 
                 memo="memo"
@@ -60,4 +61,22 @@ export class TransferModalComponent {
 
 };
 
+    @Output() readonly submitForm = new EventEmitter < TransferFormPayload>();
+
+    onSuBmintForm(form: NgForm) {
+        if(
+            form.invalid || 
+            this.model.amount === null || 
+            this.model.memo === null || 
+            this.model.receiverAddress === null
+        ){ 
+        console.error('El formulario es inválido.');
+        } else {
+        this.submitForm.emit({
+            amount: this.model.amount,
+            memo: this.model.memo,
+            receiverAddress: this.model.receiverAddress,
+        });
+    }
+}
 }

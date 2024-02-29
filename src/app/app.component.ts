@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import {HdWalletMultiButtonComponent} from '@heavy-duty/wallet-adapter-material'
-import { ShyftApiService } from './shyft-appi';
+import { ShyftApiService } from './shyft-appi.service';
 import { WalletStore } from '@heavy-duty/wallet-adapter';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {computedAsync} from 'ngxtension/computed-async';
 import { DecimalPipe } from '@angular/common';
 import { MatAnchor } from '@angular/material/button';
+import { TransferModalComponent } from './transfer-modal.component';
 
 @Component({
   standalone: true,
@@ -40,11 +41,18 @@ import { MatAnchor } from '@angular/material/button';
 })
 export class AppComponent {
   private readonly _shyftApiService = inject(ShyftApiService);
-  private readonly _walletStore = inject(WalletStore);
-  private readonly _publicKey = toSignal(this._walletStore.publicKey$);
+  private readonly _publicKey = injectPublicKey();
+  private readonly _matDialog = inject(MatDialog);
 
-  readonly account = computedAsync(
-    () => this._shyftApiService.getAccount(this._publicKey()?.toBase58()), 
+  readonly balance = computedAsync(() => 
+  this._shyftApiService.getAccount(this._publicKey()?.toBase58()), 
   {requireSync: false},
   );
+
+    onTransfer(){ 
+
+      this._matDialog.open(TransferModalComponent);
+    }
+
 }
+

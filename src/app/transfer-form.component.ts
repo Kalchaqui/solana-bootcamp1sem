@@ -9,34 +9,50 @@ export interface TransferFormModel {
     memo: string | null;
     amount: string | null;
     receiverAddress: string | null;
+    token: {
+        address: string;
+        balance: number;
+        info: {name: string; symbol: string; image: string};
+    } | null
     }
 
 export interface TrasferFormPayload{
         memo: string;
         amount: string;
         receiverAddress: string;
+        mintAddress: string; 
     }
 
     @Component ({
         selector: 'bob-transfer-form',
         template:  `
-        <form #form="ngForm" class="W-[400px]" (ngSubmit)="onSuBmintForm(form)")>
+        <form #form="ngForm" class="W-[400px]" (ngSubmit)="onSuBmintForm(form)">
             <mat-form-field appearance="fill" class="w-full mb-4">
-            <mat-label>Concepto</mat-label>
-            <input 
-                memo="memo"
-                matInput 
-                type="text"
-                placeholder="Ejemplo pagar el recibo."
-                [(ngModel)]="model.memo"
+            <mat-label>token</mat-label>
+            <mat-select
+                name="token"
                 required
-                #memoControl="ngModel"
-            />  
-            <mat-icon matSuffix>description</mat-icon>
+                #tokenControl="ngModel"
+                [(ngModel)]="model.token">
 
-            @if (form.submitted && memoControl.errors ) {
-            <mat-error>
-            @if (memoControl.errors['required']){
+            
+
+            @for (token of tokens(); track token ) {
+            <mat-option [value]="token.address">
+            <div class= "flex item-center gap-2">
+                <img [src]="token.info.image" class="rounded-full w-8 h-8"/>
+                <span>{{token.info.symbol}}</span>
+                <div>
+            </mat-option>
+             }
+            </mat-select>    
+
+             @if (form1.submitted && tokenControl.errors){
+                <mat-error>
+             }
+
+                </div>
+            @for (memoControl.errors['required']){
                 El motivo es obligatorio.
             }
         </mat-error>
@@ -73,7 +89,8 @@ export class TransferModalComponent {
         console.error('El formulario es inválido.');
         } else {
         this.submitForm.emit({
-            amount: this.model.amount,
+            mintAddress: this.model.
+            amount: this.model.amount * 10**9,
             memo: this.model.memo,
             receiverAddress: this.model.receiverAddress,
         });
